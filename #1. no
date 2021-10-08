@@ -1,0 +1,28 @@
+
+let NewConfirmed;
+
+let fetchedData = fetch('https://api.covid19api.com/summary')
+.then(response =>response.json() )
+.then(result =>{
+	console.log(result.Global)
+	let NewConfirmed = result.NewConfirmed
+	let TotalConfirmed = result.TotalConfirmed
+	let NewDeaths = result.NewDeaths
+	let TotalDeaths = result.TotalDeaths
+	let NewRecovered = result.NewRecovered
+	let TotalRecovered = result.TotalRecovered
+	return result;
+})
+.catch((err)=>{console.log(err)})
+let myData = fetchedData.json
+
+function setup() {
+createCanvas(800, 600)
+console.log(fetchedData)
+}
+
+function draw() {
+background(0)
+// console.log(fetchedData)
+ellipse(50,50,NewConfirmed/1000, 50)
+}
